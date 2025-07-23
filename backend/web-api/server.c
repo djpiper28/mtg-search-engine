@@ -284,6 +284,8 @@ void mse_serve(mse_t *mse_in)
                        &__mse_serve,
                        NULL);
 
+    mg_log_set(MG_LL_ERROR);
+
     if (c == NULL) {
         lprintf(LOG_ERROR, "Unable to init mongoose.\n");
         return;
