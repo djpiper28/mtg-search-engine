@@ -191,21 +191,21 @@ static int __mse_resolve_interp_tree_operator(mse_interp_node_t *node,
     mse_search_intermediate_t a;
     memset(&a, 0, sizeof(a));
 
-    int err = mse_resolve_interp_tree(node->l, &a, pool, dry_run, cards);
+    if (!mse_resolve_interp_tree(node->l, &a, pool, dry_run, cards)) {
+        mse_free_search_intermediate(&a);
+        return 0;
+    }
 
     mse_search_intermediate_t b;
     memset(&b, 0, sizeof(b));
-    err |= mse_resolve_interp_tree(node->r, &b, pool, dry_run, cards);
-
-    if (dry_run || err) {
+    if (!mse_resolve_interp_tree(node->r, &b, pool, dry_run, cards)) {
         mse_free_search_intermediate(&a);
         mse_free_search_intermediate(&b);
-        if (dry_run) {
-            return 1;
-        } else {
-            lprintf(LOG_ERROR, "An error occurred\n");
-            return 0;
-        }
+        return 0;
+    }
+
+    if (dry_run) {
+        return 1;
     }
 
     // Perform set operation
