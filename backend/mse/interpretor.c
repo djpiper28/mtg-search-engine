@@ -195,7 +195,7 @@ static int __mse_resolve_interp_tree_operator(mse_interp_node_t *node,
 
     mse_search_intermediate_t b;
     memset(&b, 0, sizeof(b));
-    err = mse_resolve_interp_tree(node->r, &b, pool, dry_run, cards);
+    err |= mse_resolve_interp_tree(node->r, &b, pool, dry_run, cards);
 
     if (dry_run || err) {
         mse_free_search_intermediate(&a);
