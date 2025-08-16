@@ -188,36 +188,15 @@ static int __mse_resolve_interp_tree_operator(mse_interp_node_t *node,
     ASSERT(node->r != NULL);
 
     // Calculate sets a and b (this is the recursive step)
-    mse_search_intermediate_t a, b;
+    mse_search_intermediate_t a;
     memset(&a, 0, sizeof(a));
-    b = a;
 
-    int thread_cnt = 0;
-    int err = 0;
-    sem_t sem;
-    ASSERT(sem_init(&sem, 0, 0) == 0);
+    int err = mse_resolve_interp_tree(node->l, &a, pool, dry_run, cards);
 
-    if (__mse_queue_interp_tree_worker(&sem, &err, node->l, &a, dry_run, cards, pool)) {
-        thread_cnt++;
-    } else {
-        err = 1;
-    }
-    if (__mse_queue_interp_tree_worker(&sem, &err, node->r, &b, dry_run, cards, pool)) {
-        thread_cnt++;
-    } else {
-        err = 1;
-    }
+    mse_search_intermediate_t b;
+    memset(&b, 0, sizeof(b));
+    err = mse_resolve_interp_tree(node->r, &b, pool, dry_run, cards);
 
-    // Wait for the computation to finish
-    for (int i = 0; i < thread_cnt; i++) {
-        int waiting = 1;
-        while (waiting) {
-            mse_pool_try_consume(pool);
-            waiting = sem_trywait(&sem) != 0;
-        }
-    }
-
-    sem_destroy(&sem);
     if (dry_run || err) {
         mse_free_search_intermediate(&a);
         mse_free_search_intermediate(&b);
