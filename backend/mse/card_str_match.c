@@ -190,7 +190,8 @@ static int __mse_match_cards(mse_avl_tree_node_t **ret,
     __mse_match_card_node(root, &match_data, cmp_data);
     if (is_regex) {
         mse_re_free(&re);
-        return 0;
+    } else {
+        free(cmp_data.substr);
     }
 
     return 1;
