@@ -61,7 +61,7 @@ static int test_generator_oracle_regex()
     ASSERT(mse_init_set_generator(&ret, gen_type, MSE_SET_GENERATOR_OP_EQUALS, REGEX2_ARG, len));
 
     mse_search_intermediate_t inter;
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool));
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards));
     ASSERT(mse_tree_size(inter.node) > 0);
     ASSERT(test_tree_oracle_re(inter.node));
     mse_free_search_intermediate(&inter);
@@ -69,7 +69,7 @@ static int test_generator_oracle_regex()
 
     // Test includes
     ASSERT(mse_init_set_generator(&ret, gen_type, MSE_SET_GENERATOR_OP_INCLUDES, REGEX2_ARG, len));
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool));
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards));
     size_t size_1;
     ASSERT(size_1 = mse_tree_size(inter.node));
     ASSERT(test_tree_oracle_re(inter.node));
@@ -77,7 +77,7 @@ static int test_generator_oracle_regex()
 
     // Test negate
     ret.negate = 1;
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool));
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards));
     size_t size_2;
     ASSERT(size_2 = mse_tree_size(inter.node));
     ASSERT(size_1 + size_2 == mse_tree_size(gen_cards.card_tree));
@@ -112,14 +112,14 @@ static int test_generator_oracle_substr()
     ASSERT(mse_init_set_generator(&ret, gen_type, MSE_SET_GENERATOR_OP_EQUALS, ARG, len));
 
     mse_search_intermediate_t inter;
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool));
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards));
     ASSERT(mse_tree_size(inter.node) > 0);
     mse_free_search_intermediate(&inter);
     mse_free_set_generator(&ret);
 
     // Test includes
     ASSERT(mse_init_set_generator(&ret, gen_type, MSE_SET_GENERATOR_OP_INCLUDES, ARG, len));
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool));
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards));
     ASSERT(mse_tree_size(inter.node) > 0);
     ASSERT(test_tree_oracle_substr(inter.node));
     mse_free_search_intermediate(&inter);
@@ -157,7 +157,7 @@ static int test_generator_name_regex()
     ASSERT(mse_init_set_generator(&ret, gen_type, MSE_SET_GENERATOR_OP_EQUALS, REGEX_ARG, len));
 
     mse_search_intermediate_t inter;
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool));
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards));
     ASSERT(mse_tree_size(inter.node) > 0);
     ASSERT(test_tree_name_re(inter.node));
     mse_free_search_intermediate(&inter);
@@ -165,7 +165,7 @@ static int test_generator_name_regex()
 
     // Test includes
     ASSERT(mse_init_set_generator(&ret, gen_type, MSE_SET_GENERATOR_OP_INCLUDES, REGEX_ARG, len));
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool));
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards));
     ASSERT(mse_tree_size(inter.node) > 0);
     ASSERT(test_tree_name_re(inter.node));
     mse_free_search_intermediate(&inter);
@@ -185,13 +185,13 @@ static int test_generator_name_trie()
     ASSERT(mse_init_set_generator(&ret, gen_type, MSE_SET_GENERATOR_OP_EQUALS, NAME_ARG, len));
 
     mse_search_intermediate_t inter;
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool));
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards));
     ASSERT(mse_tree_size(inter.node) > NAME_TRIE_MIN);
     mse_free_search_intermediate(&inter);
     mse_free_set_generator(&ret);
 
     ASSERT(mse_init_set_generator(&ret, gen_type, MSE_SET_GENERATOR_OP_INCLUDES, NAME_ARG, len));
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool));
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards));
     ASSERT(mse_tree_size(inter.node) > NAME_TRIE_MIN);
     mse_free_search_intermediate(&inter);
     mse_free_set_generator(&ret);
@@ -208,14 +208,14 @@ static int test_generator_name_trie_negate()
     ASSERT(mse_init_set_generator(&ret, gen_type, MSE_SET_GENERATOR_OP_EQUALS, NAME_ARG, len));
 
     mse_search_intermediate_t inter;
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool));
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards));
     ASSERT(mse_tree_size(inter.node) > NAME_TRIE_MIN);
     mse_free_search_intermediate(&inter);
     mse_free_set_generator(&ret);
 
     // No negate
     ASSERT(mse_init_set_generator(&ret, gen_type, MSE_SET_GENERATOR_OP_INCLUDES, NAME_ARG, len));
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool));
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards));
     size_t size_1;
     ASSERT(size_1 = mse_tree_size(inter.node));
     mse_free_search_intermediate(&inter);
@@ -224,7 +224,7 @@ static int test_generator_name_trie_negate()
     // With negate
     ASSERT(mse_init_set_generator(&ret, gen_type, MSE_SET_GENERATOR_OP_INCLUDES, NAME_ARG, len));
     ret.negate = 1;
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool));
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards));
     size_t size_2;
     ASSERT(size_2 = mse_tree_size(inter.node));
     mse_free_search_intermediate(&inter);

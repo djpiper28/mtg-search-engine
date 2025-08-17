@@ -21,7 +21,7 @@ static int __test_generator_##fname(mse_set_generator_operator_t op_type, int (*
     ASSERT(mse_init_set_generator(&ret, gen_type, op_type, DEFAULT_ARGUMENT, len)); \
  \
     mse_search_intermediate_t inter; \
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool)); \
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards)); \
     ASSERT(mse_tree_size(inter.node) > 0); \
     ASSERT(test_tree(inter.node)); \
     mse_free_search_intermediate(&inter); \
@@ -39,7 +39,7 @@ static int test_generator_##fname##_invalid_arg() \
     ASSERT(mse_init_set_generator(&ret, gen_type, op_type, BAD_ARGUMENT, len)); \
  \
     mse_search_intermediate_t inter; \
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool) == 0); \
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards) == 0); \
     mse_free_set_generator(&ret); \
     return 1; \
 } \
@@ -163,7 +163,7 @@ static int __test_generator_##fname##_n(mse_set_generator_operator_t op_type, in
     ret.negate = 1; \
  \
     mse_search_intermediate_t inter; \
-    ASSERT(mse_generate_set(&ret, &inter, &gen_cards, &gen_thread_pool)); \
+    ASSERT(mse_generate_set(&ret, &inter, &gen_cards)); \
     ASSERT(mse_tree_size(inter.node) > 0); \
     ASSERT(test_tree(inter.node)); \
     mse_free_search_intermediate(&inter); \

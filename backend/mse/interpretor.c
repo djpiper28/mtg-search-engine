@@ -138,8 +138,7 @@ static int __mse_resolve_interp_leaf_generator(mse_interp_node_t *node,
 
     ASSERT(mse_generate_set(&node->generator,
                             ret,
-                            cards,
-                            pool));
+                            cards));
     return 1;
 }
 
@@ -169,8 +168,7 @@ static int __mse_resolve_interp_tree_consumer(mse_interp_node_t *node,
     int r = mse_consume_set(&node->consumer,
                             ret,
                             cards,
-                            &child_ret,
-                            pool);
+                            &child_ret);
 
     mse_free_search_intermediate(&child_ret);
     ASSERT(r);

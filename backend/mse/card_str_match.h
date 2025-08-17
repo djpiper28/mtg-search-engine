@@ -1,7 +1,6 @@
 #pragma once
 #include "./avl_tree.h"
 #include "./card.h"
-#include "./thread_pool.h"
 #include "./re2_wrapper.h"
 
 /// A fast method to find if a string matches another
@@ -25,16 +24,14 @@ int mse_matching_card_oracle(mse_avl_tree_node_t **ret,
                              mse_avl_tree_node_t *cards_tree,
                              char *str,
                              int is_regex,
-                             int negate,
-                             mse_thread_pool_t *pool);
+                             int negate);
 
 /// Returns a set of matching cards for a name regex
 int mse_matching_card_name(mse_avl_tree_node_t **ret,
                            mse_avl_tree_node_t *cards_tree,
                            char *str,
                            int is_regex,
-                           int negate,
-                           mse_thread_pool_t *pool);
+                           int negate);
 
 /// The syntax for the langugage wraps regex in slashes, these will be removed by calling this
 /// Takes a regex string i.e:
