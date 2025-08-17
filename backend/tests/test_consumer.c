@@ -52,7 +52,7 @@ static int test_consumer_negate_no_cards()
     memset(&child, 0, sizeof(child));
     child.node = root;
 
-    ASSERT(mse_consume_set(&consumer, &ret, &gen_cards, &child, &gen_thread_pool));
+    ASSERT(mse_consume_set(&consumer, &ret, &gen_cards, &child));
     ASSERT(mse_tree_size(ret.node) == mse_tree_size(gen_cards.card_tree));
 
     mse_free_search_intermediate(&ret);
@@ -75,10 +75,10 @@ static int test_consumer_negate_normal_case()
                                   MSE_SET_GENERATOR_OP_EQUALS,
                                   ARGUMENT_RE,
                                   strlen(ARGUMENT_RE)));
-    ASSERT(mse_generate_set(&generator, &child, &gen_cards, &gen_thread_pool));
+    ASSERT(mse_generate_set(&generator, &child, &gen_cards));
     mse_free_set_generator(&generator);
 
-    ASSERT(mse_consume_set(&consumer, &ret, &gen_cards, &child, &gen_thread_pool));
+    ASSERT(mse_consume_set(&consumer, &ret, &gen_cards, &child));
     ASSERT(mse_tree_size(ret.node) == mse_tree_size(gen_cards.card_tree) - mse_tree_size(child.node));
 
     mse_free_search_intermediate(&ret);
@@ -99,7 +99,7 @@ static int test_consumer_oracle_re()
     memset(&child, 0, sizeof(child));
     child.node = gen_cards.card_tree; // Freeing child will now cause a shit ton of errors, so don't do that.
 
-    ASSERT(mse_consume_set(&consumer, &ret, &gen_cards, &child, &gen_thread_pool));
+    ASSERT(mse_consume_set(&consumer, &ret, &gen_cards, &child));
     ASSERT(mse_tree_size(ret.node) > 0);
 
     mse_free_search_intermediate(&ret);
@@ -119,7 +119,7 @@ static int test_consumer_name_re()
     memset(&child, 0, sizeof(child));
     child.node = gen_cards.card_tree; // Freeing child will now cause a shit ton of errors, so don't do that.
 
-    ASSERT(mse_consume_set(&consumer, &ret, &gen_cards, &child, &gen_thread_pool));
+    ASSERT(mse_consume_set(&consumer, &ret, &gen_cards, &child));
     ASSERT(mse_tree_size(ret.node) > 0);
 
     mse_free_search_intermediate(&ret);
@@ -139,7 +139,7 @@ static int test_consumer_oracle_txt()
     memset(&child, 0, sizeof(child));
     child.node = gen_cards.card_tree; // Freeing child will now cause a shit ton of errors, so don't do that.
 
-    ASSERT(mse_consume_set(&consumer, &ret, &gen_cards, &child, &gen_thread_pool));
+    ASSERT(mse_consume_set(&consumer, &ret, &gen_cards, &child));
     ASSERT(mse_tree_size(ret.node) > 0);
 
     mse_free_search_intermediate(&ret);
@@ -159,7 +159,7 @@ static int test_consumer_name_txt()
     memset(&child, 0, sizeof(child));
     child.node = gen_cards.card_tree; // Freeing child will now cause a shit ton of errors, so don't do that.
 
-    ASSERT(mse_consume_set(&consumer, &ret, &gen_cards, &child, &gen_thread_pool));
+    ASSERT(mse_consume_set(&consumer, &ret, &gen_cards, &child));
     ASSERT(mse_tree_size(ret.node) > 0);
 
     mse_free_search_intermediate(&ret);

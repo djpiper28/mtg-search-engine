@@ -7,14 +7,13 @@
 
 static int __mse_generate_set_name_re(mse_set_generator_t *gen,
                                       mse_search_intermediate_t *res,
-                                      mse_all_printings_cards_t *cards,
-                                      mse_thread_pool_t *pool)
+                                      mse_all_printings_cards_t *cards)
 {
     char *re = mse_escape_regex(gen->argument);
     ASSERT(re != NULL);
 
     mse_avl_tree_node_t *node = NULL;
-    int status = mse_matching_card_name(&node, cards->card_tree, re, 1, gen->negate, pool);
+    int status = mse_matching_card_name(&node, cards->card_tree, re, 1, gen->negate);
     *res = mse_init_search_intermediate_tree(node, 0);
     free(re);
 
@@ -24,8 +23,7 @@ static int __mse_generate_set_name_re(mse_set_generator_t *gen,
 
 static int __mse_generate_set_name_text_inc(mse_set_generator_t *gen,
         mse_search_intermediate_t *res,
-        mse_all_printings_cards_t *cards,
-        mse_thread_pool_t *pool)
+        mse_all_printings_cards_t *cards)
 {
     // Split the name into pieces
     mse_card_name_parts_t parts;
@@ -91,12 +89,11 @@ static int __mse_generate_set_name_text_inc(mse_set_generator_t *gen,
 
 int mse_generate_set_name(mse_set_generator_t *gen,
                           mse_search_intermediate_t *res,
-                          mse_all_printings_cards_t *cards,
-                          mse_thread_pool_t *pool)
+                          mse_all_printings_cards_t *cards)
 {
     if (mse_is_regex_str(gen->argument)) {
-        return __mse_generate_set_name_re(gen, res, cards, pool);
+        return __mse_generate_set_name_re(gen, res, cards);
     } else {
-        return __mse_generate_set_name_text_inc(gen, res, cards, pool);
+        return __mse_generate_set_name_text_inc(gen, res, cards);
     }
 }

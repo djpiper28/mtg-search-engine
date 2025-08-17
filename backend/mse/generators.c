@@ -77,8 +77,7 @@ int __mse_validate_generator_op_combo(mse_set_generator_type_t gen_type,
 
 int mse_generate_set(mse_set_generator_t *gen,
                      mse_search_intermediate_t *res,
-                     mse_all_printings_cards_t *cards,
-                     mse_thread_pool_t *pool)
+                     mse_all_printings_cards_t *cards)
 {
     memset(res, 0, sizeof(*res));
     switch(gen->generator_type) {
@@ -87,9 +86,9 @@ int mse_generate_set(mse_set_generator_t *gen,
     case MSE_SET_GENERATOR_COLOUR_IDENTITY:
         return mse_generate_set_colour_identity(gen, res, cards);
     case MSE_SET_GENERATOR_NAME:
-        return mse_generate_set_name(gen, res, cards, pool);
+        return mse_generate_set_name(gen, res, cards);
     case MSE_SET_GENERATOR_ORACLE_TEXT:
-        return mse_generate_set_oracle(gen, res, cards, pool);
+        return mse_generate_set_oracle(gen, res, cards);
     case MSE_SET_GENERATOR_SET:
         return mse_generate_set_set(gen, res, cards);
     case MSE_SET_GENERATOR_POWER:
