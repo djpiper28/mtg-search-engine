@@ -203,6 +203,8 @@ static int __mse_resolve_interp_tree_operator(mse_interp_node_t *node,
     }
 
     if (dry_run) {
+        mse_free_search_intermediate(&a);
+        mse_free_search_intermediate(&b);
         return 1;
     }
 
