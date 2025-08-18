@@ -25,8 +25,8 @@ importers:
         specifier: ^0.2.3
         version: 0.2.3(@fortawesome/fontawesome-svg-core@7.0.0)(react@19.0.0)
       '@types/node':
-        specifier: 24.2.0
-        version: 24.2.0
+        specifier: 24.3.0
+        version: 24.3.0
       '@types/react':
         specifier: 19.0.10
         version: 19.0.10
@@ -405,8 +405,8 @@ packages:
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
 
-  '@types/node@24.2.0':
-    resolution: {integrity: sha512-3xyG3pMCq3oYCNg7/ZP+E1ooTaGB4cG8JWRsqqOYQdbWNY4zbaV0Ennrd7stjiJEFZCaybcIgpTjJWHRfBSIDw==}
+  '@types/node@24.3.0':
+    resolution: {integrity: sha512-aPTXCrfwnDLj4VvXrm+UUCQjNEvJgNA8s5F1cvwQU+3KNltTOkBm1j30uNLyqqPNe7gE3KFzImYoZEfLhp4Yow==}
 
   '@types/react-dom@19.0.4':
     resolution: {integrity: sha512-4fSQ8vWFkg+TGhePfUzVmat3eC14TXYSsiiDSLI0dVLsrm9gZFABjPy/Qu6TKgl1tq1Bu1yDsuQgY3A3DOjCcg==}
@@ -2213,7 +2213,7 @@ snapshots:
 
   '@types/json5@0.0.29': {}
 
-  '@types/node@24.2.0':
+  '@types/node@24.3.0':
     dependencies:
       undici-types: 7.10.0
 
