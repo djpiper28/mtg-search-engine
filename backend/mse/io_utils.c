@@ -5,13 +5,13 @@
 #include <stdio.h>
 #include <ctype.h>
 
-int mse_write_double(FILE *f, double d)
+int mse_write_float(FILE *f, float d)
 {
     int w = fwrite(&d, sizeof(d), 1, f);
     return w == 1;
 }
 
-int mse_read_double(FILE *f, double *d)
+int mse_read_float(FILE *f, float *d)
 {
     int r = fread(d, sizeof * d, 1, f);
     return r == 1;
@@ -82,10 +82,10 @@ int mse_read_tm(FILE *f, struct tm *t)
     return r == 1;
 }
 
-int mse_to_double(char *input, double *ret)
+int mse_to_float(char *input, float *ret)
 {
     char *endptr = NULL;
-    *ret = strtod(input, &endptr);
+    *ret = strtof(input, &endptr);
     return endptr == &input[strlen(input)];
 }
 

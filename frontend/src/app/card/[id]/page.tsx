@@ -47,7 +47,7 @@ export default async function Page(props: Readonly<Props>) {
   return (
     <div className="flex flex-col gap-5 bg-white p-3 md:p-5 rounded-xl justify-between w-full">
       <div className="flex flex-row gap-3 justify-between">
-        <h1 className="text-2xl font-bold hyphens-auto">{data.name}</h1>
+        <h1 className="text-2xl font-bold hyphens-auto text-wrap">{data.name}</h1>
         <div className="flex flex-row flex-wrap w-max justify-end">
           {data.mana_cost &&
             data.mana_cost
@@ -85,7 +85,7 @@ export default async function Page(props: Readonly<Props>) {
           </p>
         </span>
       </div>
-      <div className="grid md:grid-cols-2 gap-2">
+      <div className="grid md:grid-cols-2 gap-2 gap-x-5">
         {Object.keys(data.format_legalities).map((format) => {
           const legality = data.format_legalities[format];
 

@@ -50,7 +50,7 @@ static int test_tree_##fname##_eq(mse_avl_tree_node_t *node) \
         return 1; \
     } \
  \
-    double fname = ((mse_card_t *) node->payload)->fname; \
+    float fname = ((mse_card_t *) node->payload)->fname; \
     ASSERT((int) DEFAULT_ARGUMENT_DOUBLE == (int) fname); \
     ASSERT(test_tree_##fname##_eq(node->l)); \
     ASSERT(test_tree_##fname##_eq(node->r)); \
@@ -75,7 +75,7 @@ static int test_tree_##fname##_lt(mse_avl_tree_node_t *node) \
         return 1; \
     } \
  \
-    double fname = ((mse_card_t *) node->payload)->fname; \
+    float fname = ((mse_card_t *) node->payload)->fname; \
     ASSERT(fname < DEFAULT_ARGUMENT_DOUBLE); \
     ASSERT(fabs(DEFAULT_ARGUMENT_DOUBLE - fname) > 0.01); \
     ASSERT(test_tree_##fname##_lt(node->l)); \
@@ -95,7 +95,7 @@ static int test_tree_##fname##_lt_inc(mse_avl_tree_node_t *node) \
         return 1; \
     } \
  \
-    double fname = ((mse_card_t *) node->payload)->fname; \
+    float fname = ((mse_card_t *) node->payload)->fname; \
     ASSERT(fname <= DEFAULT_ARGUMENT_DOUBLE ); \
     found_eq |= (int) DEFAULT_ARGUMENT_DOUBLE == (int) fname; \
     ASSERT(test_tree_##fname##_lt_inc(node->l)); \
@@ -117,7 +117,7 @@ static int test_tree_##fname##_gt(mse_avl_tree_node_t *node) \
         return 1; \
     } \
  \
-    double fname = ((mse_card_t *) node->payload)->fname; \
+    float fname = ((mse_card_t *) node->payload)->fname; \
     ASSERT(fname > DEFAULT_ARGUMENT_DOUBLE); \
     ASSERT(fabs(DEFAULT_ARGUMENT_DOUBLE - fname) > 0.01); \
     ASSERT(test_tree_##fname##_gt(node->l)); \
@@ -137,7 +137,7 @@ static int test_tree_##fname##_gt_inc(mse_avl_tree_node_t *node) \
         return 1; \
     } \
  \
-    double fname = ((mse_card_t *) node->payload)->fname; \
+    float fname = ((mse_card_t *) node->payload)->fname; \
     ASSERT(fname >= DEFAULT_ARGUMENT_DOUBLE); \
     found_eq |= (int) DEFAULT_ARGUMENT_DOUBLE == (int) fname; \
     ASSERT(test_tree_##fname##_gt_inc(node->l)); \
@@ -177,7 +177,7 @@ static int test_tree_##fname##_eq_n(mse_avl_tree_node_t *node) \
         return 1; \
     } \
  \
-    double fname = ((mse_card_t *) node->payload)->fname; \
+    float fname = ((mse_card_t *) node->payload)->fname; \
     ASSERT((int) DEFAULT_ARGUMENT_DOUBLE != (int) fname); \
     ASSERT(test_tree_##fname##_eq_n(node->l)); \
     ASSERT(test_tree_##fname##_eq_n(node->r)); \
@@ -202,7 +202,7 @@ static int test_tree_##fname##_lt_n(mse_avl_tree_node_t *node) \
         return 1; \
     } \
  \
-    double fname = ((mse_card_t *) node->payload)->fname; \
+    float fname = ((mse_card_t *) node->payload)->fname; \
     ASSERT(!(fname < DEFAULT_ARGUMENT_DOUBLE)); \
     ASSERT(test_tree_##fname##_lt_n(node->l)); \
     ASSERT(test_tree_##fname##_lt_n(node->r)); \
@@ -221,7 +221,7 @@ static int test_tree_##fname##_lt_inc_n(mse_avl_tree_node_t *node) \
         return 1; \
     } \
  \
-    double fname = ((mse_card_t *) node->payload)->fname; \
+    float fname = ((mse_card_t *) node->payload)->fname; \
     ASSERT(!(fname <= DEFAULT_ARGUMENT_DOUBLE)); \
     found_eq |= (int) DEFAULT_ARGUMENT_DOUBLE == (int) fname; \
     ASSERT(test_tree_##fname##_lt_inc_n(node->l)); \
@@ -243,7 +243,7 @@ static int test_tree_##fname##_gt_n(mse_avl_tree_node_t *node) \
         return 1; \
     } \
  \
-    double fname = ((mse_card_t *) node->payload)->fname; \
+    float fname = ((mse_card_t *) node->payload)->fname; \
     ASSERT(!(fname > DEFAULT_ARGUMENT_DOUBLE)); \
     ASSERT(test_tree_##fname##_gt_n(node->l)); \
     ASSERT(test_tree_##fname##_gt_n(node->r)); \
@@ -262,7 +262,7 @@ static int test_tree_##fname##_gt_inc_n(mse_avl_tree_node_t *node) \
         return 1; \
     } \
  \
-    double fname = ((mse_card_t *) node->payload)->fname; \
+    float fname = ((mse_card_t *) node->payload)->fname; \
     ASSERT(!(fname >= DEFAULT_ARGUMENT_DOUBLE)); \
     found_eq |= (int) DEFAULT_ARGUMENT_DOUBLE == (int) fname; \
     ASSERT(test_tree_##fname##_gt_inc_n(node->l)); \
@@ -298,7 +298,7 @@ TEST_FEILD_GENERATORS_FUNC_FOR(toughness, TOUGHNESS)
 TEST_FEILD_GENERATORS_FUNC_FOR(cmc, CMC)
 TEST_FEILD_GENERATORS_FUNC_FOR(loyalty, LOYALTY)
 
-SUB_TEST(test_set_generators_double_fields, TEST_FEILD_GENERATORS_FOR(power),
+SUB_TEST(test_set_generators_float_fields, TEST_FEILD_GENERATORS_FOR(power),
          TEST_FEILD_GENERATORS_FOR(toughness),
          TEST_FEILD_GENERATORS_FOR(cmc),
          TEST_FEILD_GENERATORS_FOR(loyalty))

@@ -1,5 +1,5 @@
 #include "./generators.h"
-#include "./generator_double_fields.h"
+#include "./generator_float_fields.h"
 #include "./generator_set.h"
 #include "./generator_oracle.h"
 #include "./generator_name.h"

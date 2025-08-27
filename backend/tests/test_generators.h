@@ -5,7 +5,7 @@
 int test_generators();
 /// Called in test_generators, defined here so that the long messy code can be in its own unit
 int test_generator_validation();
-int test_set_generators_double_fields();
+int test_set_generators_float_fields();
 int test_generator_set();
 int test_generator_txt();
 int test_generator_colours();

@@ -266,7 +266,7 @@ static int __mse_split_card_name(char * restrict name, mse_card_name_parts_t * r
     size_t len = strlen(name);
     for (size_t i = 0; i <= len; i++) {
         if (__mse_filter_char(name[i]) != MSE_FILTER_NO_CHAR
-                                          || __mse_is_special_case(name[i])) {
+                || __mse_is_special_case(name[i])) {
             continue;
         }
 
