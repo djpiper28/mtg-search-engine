@@ -8,10 +8,10 @@ export default function RandomQuery() {
   const [query, setQuery] = useState("set:m20 or set:m19");
   const queries: string[] = [
     "c:r and name:goblin",
-    "c:u and name:wizard and oracle:/.*draw(( a)|[0-9])card(s)?.*/",
+    "c:u and name:wizard and oracle:/.*draw(( a)|[0-9]) card(s)?.*/",
     "goblin motivator",
     "set:m20 and c:u",
-    "hydra o:/^x?.*.?\\sx[., ].*$/",
+    "hydra o:/^x?.*.?\\sx[., ].*$/ and legal:standard",
     "i:r -c:r",
     "-name:goblin c:r oracle:goblin",
     "-set:m20 set:m21",
@@ -21,6 +21,7 @@ export default function RandomQuery() {
     "legal:commander and banned:modern",
     "type:goat and legal:commander",
     "o:banding and legal:commander and type:legendary",
+    "dandan c:u",
   ];
   useEffect(() => {
     setInterval(() => {
