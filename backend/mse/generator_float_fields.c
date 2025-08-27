@@ -1,4 +1,4 @@
-#include "./generator_double_fields.h"
+#include "./generator_float_fields.h"
 #include "./card.h"
 #include "./avl_tree.h"
 #include "./io_utils.h"
@@ -9,7 +9,7 @@
 static int __mse_generate_set_##fname##_eq(mse_set_generator_t *gen, \
                                        mse_search_intermediate_t *res, \
                                        mse_all_printings_cards_t *cards, \
-                                       double arg) \
+                                       float arg) \
 { \
     /* Prepare the bounds of the search */ \
     mse_card_t lower, upper; \
@@ -29,7 +29,7 @@ static int __mse_generate_set_##fname##_eq(mse_set_generator_t *gen, \
 static int __mse_generate_set_##fname##_ne(mse_set_generator_t *gen, \
                                        mse_search_intermediate_t *res, \
                                        mse_all_printings_cards_t *cards, \
-                                       double arg) \
+                                       float arg) \
 { \
     ASSERT(__mse_generate_set_##fname##_eq(gen, res, cards, arg)); \
  \
@@ -47,7 +47,7 @@ static int __mse_generate_set_##fname##_ne(mse_set_generator_t *gen, \
 static int __mse_generate_set_##fname##_lt(mse_set_generator_t *gen, \
                                        mse_search_intermediate_t *res, \
                                        mse_all_printings_cards_t *cards, \
-                                       double arg) \
+                                       float arg) \
 { \
     /* Prepare the bounds of the search */ \
     mse_card_t lower; \
@@ -66,7 +66,7 @@ static int __mse_generate_set_##fname##_lt(mse_set_generator_t *gen, \
 static int __mse_generate_set_##fname##_lt_inc(mse_set_generator_t *gen, \
         mse_search_intermediate_t *res, \
         mse_all_printings_cards_t *cards, \
-        double arg) \
+        float arg) \
 { \
     /* Prepare the bounds of the search */ \
     mse_card_t lower; \
@@ -85,7 +85,7 @@ static int __mse_generate_set_##fname##_lt_inc(mse_set_generator_t *gen, \
 static int __mse_generate_set_##fname##_gt(mse_set_generator_t *gen, \
                                        mse_search_intermediate_t *res, \
                                        mse_all_printings_cards_t *cards, \
-                                       double arg) \
+                                       float arg) \
 { \
     /* Prepare the bounds of the search */ \
     mse_card_t lower; \
@@ -103,7 +103,7 @@ static int __mse_generate_set_##fname##_gt(mse_set_generator_t *gen, \
 static int __mse_generate_set_##fname##_gt_inc(mse_set_generator_t *gen, \
         mse_search_intermediate_t *res, \
         mse_all_printings_cards_t *cards, \
-        double arg) \
+        float arg) \
 { \
     /* Prepare the bounds of the search */ \
     mse_card_t lower; \
@@ -122,8 +122,8 @@ int mse_generate_set_##fname(mse_set_generator_t *gen, \
                            mse_search_intermediate_t *res, \
                            mse_all_printings_cards_t *cards) \
 { \
-    double arg; \
-    ASSERT(mse_to_double(gen->argument, &arg)); \
+    float arg; \
+    ASSERT(mse_to_float(gen->argument, &arg)); \
  \
     if (gen->negate) { \
         switch(gen->generator_op) { \

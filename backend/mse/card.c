@@ -324,10 +324,10 @@ int mse_write_card(FILE *f, mse_card_t card)
         ASSERT(mse_write_str(f, card.types[i]));
     }
 
-    ASSERT(mse_write_double(f, card.power));
-    ASSERT(mse_write_double(f, card.toughness));
-    ASSERT(mse_write_double(f, card.cmc));
-    ASSERT(mse_write_double(f, card.loyalty));
+    ASSERT(mse_write_float(f, card.power));
+    ASSERT(mse_write_float(f, card.toughness));
+    ASSERT(mse_write_float(f, card.cmc));
+    ASSERT(mse_write_float(f, card.loyalty));
     int tmp = card.colours;
     ASSERT(mse_write_int(f, tmp));
     tmp = card.colour_identity;
@@ -356,10 +356,10 @@ int mse_read_card(FILE *f, mse_card_t *card)
         ASSERT(mse_read_str(f, &card->types[i]));
     }
 
-    ASSERT(mse_read_double(f, &card->power));
-    ASSERT(mse_read_double(f, &card->toughness));
-    ASSERT(mse_read_double(f, &card->cmc));
-    ASSERT(mse_read_double(f, &card->loyalty));
+    ASSERT(mse_read_float(f, &card->power));
+    ASSERT(mse_read_float(f, &card->toughness));
+    ASSERT(mse_read_float(f, &card->cmc));
+    ASSERT(mse_read_float(f, &card->loyalty));
     int tmp;
     ASSERT(mse_read_int(f, &tmp));
     card->colours = tmp;
@@ -449,7 +449,7 @@ int mse_avl_cmp_card_name(void *restrict a, void *restrict b)
   if ((int)ca->field == (int)cb->field) {                                      \
     return mse_avl_cmp_card(a, b);                                             \
   }                                                                            \
-  double cmp = ca->field - cb->field;                                          \
+  float cmp = ca->field - cb->field;                                          \
   if (cmp < 0) {                                                               \
     return -1;                                                                 \
   } else {                                                                     \

@@ -31,7 +31,7 @@ static int test_##type##_read_write() \
 
 time_t time_local;
 
-TEST_BASIC_READ_WRITE(double, M_PI)
+TEST_BASIC_READ_WRITE(float, M_PI)
 TEST_BASIC_READ_WRITE(int, INT_MAX)
 TEST_BASIC_READ_WRITE(size_t, LLONG_MAX)
 TEST_BASIC_READ_WRITE(tm, *gmtime(&time_local))
@@ -87,16 +87,16 @@ static int test_str_read_write_null()
     return 1;
 }
 
-static int test_mse_to_double()
+static int test_mse_to_float()
 {
-    double ret = 0;
-    ASSERT(mse_to_double("5", &ret));
+    float ret = 0;
+    ASSERT(mse_to_float("5", &ret));
     ASSERT(fabs(ret - 5) < 0.001);
 
-    ASSERT(mse_to_double("5.2", &ret));
+    ASSERT(mse_to_float("5.2", &ret));
     ASSERT(fabs(ret - 5.2) < 0.001);
 
-    ASSERT(!mse_to_double("pee pee poo poo", &ret));
+    ASSERT(!mse_to_float("pee pee poo poo", &ret));
     return 1;
 }
 
@@ -109,11 +109,11 @@ static int test_mse_to_lower()
     return 1;
 }
 
-SUB_TEST(test_io_utils, {&test_double_read_write, "Test double read and, write"},
+SUB_TEST(test_io_utils, {&test_float_read_write, "Test float read and, write"},
 {&test_int_read_write, "Test int read and, write"},
 {&test_size_t_read_write, "Test size_t read and, write"},
 {&test_tm_read_write, "Test struct tm read and, write"},
 {&test_str_read_write, "Test string read and, write"},
 {&test_str_read_write_null, "Test string read and, write (null)"},
-{&test_mse_to_double, "Test strtod wrapper"},
+{&test_mse_to_float, "Test strtod wrapper"},
 {&test_mse_to_lower, "Test mse_to_lower"})

@@ -94,7 +94,7 @@ int __mse_insert_node_special(mse_parser_status_t *state, mse_interp_node_t *nod
     if (state->node->type == MSE_INTERP_NODE_SET_GENERATOR) {
         return __mse_insert_swap_parent(state, node);
     } else if (state->node->type == MSE_INTERP_NODE_SET_CONSUMER
-                                    && state->node->l != NULL) {
+               && state->node->l != NULL) {
         // if the parent is a consumer node then there should only be one child
         // for it, so if left is set then left should become the parent
         state->node = state->node->l;

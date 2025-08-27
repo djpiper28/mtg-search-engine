@@ -34,16 +34,16 @@ typedef struct mse_card_t {
     char *oracle_text_lower;
     size_t types_count;
     char **types;
-    double power;
-    double toughness;
-    double cmc;
+    float power;
+    float toughness;
+    float cmc;
     mse_colour_enum_t colours;
     mse_colour_enum_t colour_identity;
     size_t set_codes_count;
     mse_set_code_t *set_codes;
     mse_card_format_legalities_t format_legalities;
     /// 0 is no loyality
-    double loyalty;
+    float loyalty;
     /// Contains all of the cards information in JSON already, for use with APIs
     json_t *json;
 } mse_card_t;

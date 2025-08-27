@@ -189,8 +189,8 @@ set(SRC
     ./mse/generator_set.c
     ./mse/generators.h
     ./mse/generators.c
-    ./mse/generator_double_fields.h
-    ./mse/generator_double_fields.c
+    ./mse/generator_float_fields.h
+    ./mse/generator_float_fields.c
     ./mse/generator_oracle.h
     ./mse/generator_oracle.c
     ./mse/generator_colour.h

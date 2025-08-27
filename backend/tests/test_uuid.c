@@ -135,7 +135,7 @@ static int test_get_set_code()
     ASSERT(mse_get_set_code("", &code) == 0);
     ASSERT(mse_get_set_code(
                "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
-    &code) == 0);
+               &code) == 0);
 
     ASSERT(mse_get_set_code(SET_SHORT, &code));
     ASSERT(strncmp((char *) code, SET_SHORT, sizeof(code)) == 0);

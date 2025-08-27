@@ -7,7 +7,7 @@
 #define MSE_CARDS_FILE_NAME "cards.data"
 // Change the left-most magic number when the format changes
 //                                    v this one
-#define MSE_BINARY_VERSION ((size_t) (3ul | (((size_t) MSE_FORMAT_MAGIC_NUMBER) << 32)))
+#define MSE_BINARY_VERSION ((size_t) (4ul | (((size_t) MSE_FORMAT_MAGIC_NUMBER) << 32)))
 
 /// Writes all cards and sets to f
 int mse_write_cards(FILE *f, mse_all_printings_cards_t *cards);
