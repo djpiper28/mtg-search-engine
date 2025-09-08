@@ -1,4 +1,4 @@
-URL=http://localhost:4365/api
+URL?=http://localhost:4365/api
 
 basic: warmup
 	hey -n 1000 -c 50 -m GET -d "type:goblin and name:krenko and type:legendary and o:/.*craete.*tokens.*/" $(URL)
