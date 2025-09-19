@@ -48,6 +48,25 @@ static int test_card_matches()
     return 1;
 }
 
+static int test_card_matches_2()
+{
+    mse_re_t re;
+    ASSERT(mse_re_init(&re, ".*test.*"));
+
+    mse_card_t card;
+    card.name = "lorem ipsum test sit dolor";
+    card.name_lower = card.name;
+    card.oracle_text = card.name;
+    card.oracle_text_lower = card.name;
+
+    for (size_t i = 0; i < 100; i++) {
+        ASSERT(mse_card_oracle_matches(&card, &re));
+        ASSERT(mse_card_name_matches(&card, &re));
+    }
+    mse_re_free(&re);
+    return 1;
+}
+
 static int test_oracle_match()
 {
     mse_avl_tree_node_t *ret = NULL;
@@ -100,6 +119,23 @@ static int test_name_match_2()
     ASSERT(ret != NULL);
     ASSERT(mse_tree_size(ret) >= NAME_TEST_REGEX_2_MATHCES);
     mse_free_tree(ret);
+    return 1;
+}
+
+static int test_name_match_3()
+{
+    mse_avl_tree_node_t *ret = NULL;
+    ASSERT(mse_matching_card_name(&ret, test_cards.card_tree, "Goblin Motivator", 0, 0));
+    ASSERT(ret != NULL);
+    ASSERT(mse_tree_size(ret) == 1);
+
+    mse_avl_tree_node_t *re_ret = NULL;
+    ASSERT(mse_matching_card_name(&re_ret, ret, "Goblin Motivator", 1, 0));
+    ASSERT(re_ret != NULL);
+    ASSERT(mse_tree_size(re_ret) == 1);
+
+    mse_free_tree(ret);
+    mse_free_tree(re_ret);
     return 1;
 }
 
@@ -178,11 +214,13 @@ static int test_oracle_match_substr()
 
 SUB_TEST(test_card_str_match, {&init_test_cards, "Init regex test cards"},
 {&test_card_matches, "Test card matches"},
+{&test_card_matches_2, "Test card matches 2"},
 {&test_oracle_match, "Test oracle regex match"},
 {&test_oracle_match_2, "Test oracle regex match 2"},
 {&test_oracle_match_3, "Test oracle regex match 2 (negate test)"},
 {&test_name_match, "Test name regex match"},
 {&test_name_match_2, "Test name regex match 2"},
+{&test_name_match_3, "Test name regex match 3"},
 {&test_regex_compile_err, "Test regex compile error case"},
 {&test_oracle_match_a_lot_of_times, "Test oracle match a lot of times"},
 {&test_regex_escape, "Test regex escape"},

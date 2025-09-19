@@ -149,7 +149,6 @@ static int __mse_match_card_node(mse_avl_tree_node_t * restrict node,
     ASSERT(__mse_match_card_do_match(node, match_data, cmp_data));
     ASSERT(__mse_match_card_node(node->l, match_data, cmp_data));
     ASSERT(__mse_match_card_node(node->r, match_data, cmp_data));
-
     return 1;
 }
 
