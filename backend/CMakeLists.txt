@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.9)
 
 project(
   mtg-search-engine
-  VERSION 1.4
+  VERSION 1.5
   LANGUAGES C CXX)
 
 # Clangd
