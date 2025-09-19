@@ -7,6 +7,7 @@ static int test_good_case()
     mse_re_t re;
     ASSERT(mse_re_init(&re, "ma?s{2}ive\\scar."));
     ASSERT(mse_re_matches(&re, "massive cars"));
+    ASSERT(!mse_re_matches(&re, "random text"));
     mse_re_free(&re);
     return 1;
 }

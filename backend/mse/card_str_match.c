@@ -62,9 +62,6 @@ int mse_card_oracle_matches(mse_card_t * restrict card, mse_re_t *re)
 
 int mse_card_name_matches(mse_card_t * restrict card, mse_re_t *re)
 {
-    if (card->name_lower == NULL) {
-        return 0;
-    }
     return mse_re_matches(re, card->name_lower);
 }
 
@@ -77,7 +74,6 @@ typedef enum mse_card_match_type_t {
 typedef struct mse_card_match_t {
     mse_card_match_type_t type;
     mse_avl_tree_node_t **res;
-    char *str;
     int negate;
     int is_regex;
 } mse_card_match_t;
@@ -166,6 +162,8 @@ static int __mse_match_cards(mse_avl_tree_node_t **ret,
 {
     mse_re_t re;
     mse_card_match_cmp_data_t cmp_data;
+    memset(&cmp_data, 0, sizeof(cmp_data));
+
     if (is_regex) {
         ASSERT(mse_compile_regex(str, &re));
         cmp_data.re = &re;
@@ -177,7 +175,6 @@ static int __mse_match_cards(mse_avl_tree_node_t **ret,
     memset(&match_data, 0, sizeof(match_data));
     match_data.type = type;
     match_data.is_regex = is_regex;
-    match_data.str = str;
     match_data.negate = negate;
 
     mse_avl_tree_node_t *root = NULL;
