@@ -59,18 +59,18 @@ int mse_str_match(char * restrict str, char * restrict substr)
 
 int mse_card_oracle_matches(mse_card_t * restrict card, mse_re_t *re)
 {
-    if (card->oracle_text == NULL) {
+    if (card->oracle_text_lower == NULL) {
         return 0;
     }
-    return __mse_re_match(card->oracle_text, re);
+    return __mse_re_match(card->oracle_text_lower, re);
 }
 
 int mse_card_name_matches(mse_card_t * restrict card, mse_re_t *re)
 {
-    if (card->name == NULL) {
+    if (card->name_lower == NULL) {
         return 0;
     }
-    return __mse_re_match(card->name, re);
+    return __mse_re_match(card->name_lower, re);
 }
 
 // Code to allow for regex matching to be done in many threads
