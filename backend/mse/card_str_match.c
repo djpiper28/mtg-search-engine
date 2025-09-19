@@ -1,6 +1,7 @@
 #include "./card_str_match.h"
 #include "./io_utils.h"
 #include "../testing_h/testing.h"
+#include "mse/re2_wrapper.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -16,11 +17,6 @@ int mse_is_regex_str(char *str)
 int mse_compile_regex(char *regex, mse_re_t *re)
 {
     return mse_re_init(re, regex);
-}
-
-static int __mse_re_match(char *str, mse_re_t *re)
-{
-    return mse_re_matches(re, str);
 }
 
 #define __MSE_HASH_DEFAULT 0
@@ -61,7 +57,7 @@ int mse_card_oracle_matches(mse_card_t * restrict card, mse_re_t *re)
     if (card->oracle_text_lower == NULL) {
         return 0;
     }
-    return __mse_re_match(card->oracle_text_lower, re);
+    return mse_re_matches(re, card->oracle_text_lower);
 }
 
 int mse_card_name_matches(mse_card_t * restrict card, mse_re_t *re)
@@ -69,7 +65,7 @@ int mse_card_name_matches(mse_card_t * restrict card, mse_re_t *re)
     if (card->name_lower == NULL) {
         return 0;
     }
-    return __mse_re_match(card->name_lower, re);
+    return mse_re_matches(re, card->name_lower);
 }
 
 // Code to allow for regex matching to be done in many threads

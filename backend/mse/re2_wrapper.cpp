@@ -22,7 +22,7 @@ int mse_re_init(mse_re_t *re, char *str)
 
 int mse_re_matches(mse_re_t *re, char *str)
 {
-    return RE2::FullMatch(std::string(str), *re->__re);
+    return RE2::FullMatch(std::string(str), *re->__re) ? 1 : 0;
 }
 
 void mse_re_free(mse_re_t *re)
