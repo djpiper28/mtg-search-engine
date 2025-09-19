@@ -175,9 +175,10 @@ static int __mse_match_cards(mse_avl_tree_node_t **ret,
     match_data.type = type;
     match_data.is_regex = is_regex;
     match_data.negate = negate;
+    match_data.res = ret;
+    *ret = NULL;
 
-    mse_avl_tree_node_t *root = NULL;
-    __mse_match_card_node(root, &match_data, cmp_data);
+    __mse_match_card_node(cards_tree, &match_data, cmp_data);
     if (is_regex) {
         mse_re_free(&re);
     } else {

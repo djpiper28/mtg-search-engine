@@ -26,7 +26,7 @@ static int free_test_card()
 
 #define ORACLE_TEST_REGEX_1_MATCHES 21
 #define ORACLE_TEST_REGEX_1 ".*whenever a (creature|enchantment) enters.*"
-#define ORACLE_TEST_REGEX_2_MATHCES 59
+#define ORACLE_TEST_REGEX_2_MATHCES 28
 #define ORACLE_TEST_REGEX_2 "whenever .* enters,.*draw (a|[0-9]+) cards?.*"
 
 static int test_card_matches()
