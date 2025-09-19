@@ -3,7 +3,6 @@
 #include "../testing_h/testing.h"
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 
 int mse_is_regex_str(char *str)
 {
@@ -112,7 +111,6 @@ static int __mse_match_card_do_match(mse_avl_tree_node_t * restrict node,
         if (match_data->is_regex) {
             matches = mse_card_name_matches((mse_card_t *) node->payload, data.re);
         } else {
-            // this is probably not going to be ussed but eh
             matches = mse_str_match(((mse_card_t *) node->payload)->name_lower, data.substr);
         }
         break;

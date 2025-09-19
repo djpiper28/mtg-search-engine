@@ -145,6 +145,8 @@ int mse_parse_card_json(json_t *json, mse_card_t *card)
     free(card->name);
     card->name = normalised;
 
+    ASSERT(card->name_lower = mse_to_lower(card->name));
+
     // Read oracle
     json_t *oracle_o = json_object_get(json, "text");
     if (oracle_o != NULL) {
@@ -303,8 +305,6 @@ int mse_parse_card_json(json_t *json, mse_card_t *card)
                                 &card->set_codes[card->set_codes_count]));
         card->set_codes_count++;
     }
-
-    ASSERT(card->name_lower = mse_to_lower(card->name));
 
     // Read the format legalities
     ASSERT(
