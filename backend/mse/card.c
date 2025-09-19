@@ -347,10 +347,14 @@ int mse_read_card(FILE *f, mse_card_t *card)
     memset(card, 0, sizeof(*card));
     ASSERT(mse_read_uuid(f, &card->id));
     ASSERT(mse_read_str(f, &card->name));
+    ASSERT(card->name_lower = mse_to_lower(card->name));
     ASSERT(mse_read_str(f, &card->mana_cost));
     ASSERT(mse_read_str(f, &card->oracle_text));
-    ASSERT(mse_read_size_t(f, &card->types_count));
+    if (card->oracle_text != NULL) {
+        ASSERT(card->oracle_text_lower = mse_to_lower(card->oracle_text));
+    }
 
+    ASSERT(mse_read_size_t(f, &card->types_count));
     ASSERT(card->types = malloc(sizeof(*card->types) * card->types_count));
     for (size_t i = 0; i < card->types_count; i++) {
         ASSERT(mse_read_str(f, &card->types[i]));
@@ -371,11 +375,6 @@ int mse_read_card(FILE *f, mse_card_t *card)
                malloc(sizeof(*card->set_codes) * card->set_codes_count));
     for (size_t i = 0; i < card->set_codes_count; i++) {
         ASSERT(mse_read_set_code(f, &card->set_codes[i]));
-    }
-
-    ASSERT(card->name_lower = mse_to_lower(card->name));
-    if (card->oracle_text != NULL) {
-        ASSERT(card->oracle_text_lower = mse_to_lower(card->oracle_text));
     }
 
     ASSERT(mse_read_legalities(f, &card->format_legalities));
