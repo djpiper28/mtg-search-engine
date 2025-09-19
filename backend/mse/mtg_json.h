@@ -52,9 +52,7 @@ typedef struct mse_cards_indexes_t {
     mse_avl_tree_node_t *card_cmc_tree;
     /// Index for planeswalker loyality
     mse_avl_tree_node_t *card_loyalty_tree;
-    /// Card names trie where the full filtered name is used
-    mse_card_trie_node_t *card_name_trie;
-    /// Card names parts trie where the full filtered name is used
+    /// Card names parts trie where the filtered name is used (a part being something white space seperated "goblin" "moviator")
     mse_card_trie_node_t *card_name_parts_trie;
     /// Card type trie where each filtered type is used
     mse_card_trie_node_t *card_type_trie;

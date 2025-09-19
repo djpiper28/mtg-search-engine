@@ -51,23 +51,6 @@ static int test_all_printings_cards_found()
     return 1;
 }
 
-static int __test_card_trie_index(mse_avl_tree_node_t *node)
-{
-    if (node == NULL) {
-        return 1;
-    }
-
-    mse_avl_tree_node_t *ret = NULL;
-    mse_card_t *card = (mse_card_t *) node->payload;
-    ASSERT(mse_card_trie_lookup(test_cards.indexes.card_name_trie, card->name, &ret));
-    ASSERT(ret != NULL);
-    mse_free_tree(ret);
-
-    ASSERT(__test_card_trie_index(node->l));
-    ASSERT(__test_card_trie_index(node->r));
-    return 1;
-}
-
 static int __test_card_parts_trie_index(mse_avl_tree_node_t *node)
 {
     if (node == NULL) {
@@ -97,8 +80,6 @@ static int test_indexes()
     ASSERT(mse_tree_size(test_cards.indexes.card_power_tree) > 0);
     ASSERT(mse_tree_size(test_cards.indexes.card_toughness_tree) > 0);
     ASSERT(mse_tree_size(test_cards.indexes.card_cmc_tree) > 0);
-    ASSERT(test_cards.indexes.card_name_trie != NULL);
-    ASSERT(__test_card_trie_index(test_cards.card_tree));
 
     ASSERT(test_cards.indexes.card_name_parts_trie != NULL);
     ASSERT(__test_card_parts_trie_index(test_cards.card_tree));
