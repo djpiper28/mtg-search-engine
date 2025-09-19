@@ -7,7 +7,6 @@ project(
 
 # Clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
-
 set(REPO_URL "https://github.com/djpiper28/mtg-search-engine")
 
 message(STATUS "Building ${CMAKE_PROJECT_NAME}")
@@ -46,6 +45,9 @@ add_definitions("-DMSE_PROJECT_NAME=\"${CMAKE_PROJECT_NAME}\"")
 string(LENGTH "${CMAKE_SOURCE_DIR}/" SOURCE_PATH_SIZE)
 add_definitions("-DSOURCE_PATH_SIZE=${SOURCE_PATH_SIZE}")
 add_definitions("-D__FILENAME__=(&__FILE__[SOURCE_PATH_SIZE])")
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_C_STANDARD 11)
 
 if(NOT WIN32)
   set(OPTIMISATION "-Ofast")
