@@ -36,7 +36,9 @@ static int test_card_matches()
 
     mse_card_t card;
     card.name = "Testing name 123";
+    card.name_lower = "testing name 123";
     card.oracle_text = "Whenever a creature enters, pass go and collect $200.";
+    card.oracle_text_lower = "whenever a creature enters, pass go and collect $200.";
 
     for (size_t i = 0; i < 100; i++) {
         ASSERT(mse_card_oracle_matches(&card, &re));
