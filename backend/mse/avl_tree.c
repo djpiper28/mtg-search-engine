@@ -113,7 +113,7 @@ static inline mse_avl_tree_node_t *__rotate_r(mse_avl_tree_node_t * restrict y)
     return x;
 }
 
-static inline mse_avl_tree_node_t *__rotate_l(mse_avl_tree_node_t *x)
+static inline mse_avl_tree_node_t *__rotate_l(mse_avl_tree_node_t * restrict x)
 {
     /* Rotation (left):
     *    x              y
@@ -183,7 +183,7 @@ static inline mse_avl_tree_node_t *__do_insert_node(mse_avl_tree_node_t * restri
     return root;
 }
 
-int mse_insert_node(mse_avl_tree_node_t **root, mse_avl_tree_node_t *node)
+int mse_insert_node(mse_avl_tree_node_t ** restrict root, mse_avl_tree_node_t * restrict node)
 {
     if (*root == NULL) {
         *root = node;
@@ -231,7 +231,7 @@ mse_avl_tree_node_t *mse_shallow_copy_tree_node(mse_avl_tree_node_t * restrict n
     return mse_init_avl_tree_node(node->free_payload, node->cmp_payload, node->payload);
 }
 
-static inline int __add_node_to_lookup(mse_avl_tree_node_t **res, mse_avl_tree_node_t * restrict __node)
+static inline int __add_node_to_lookup(mse_avl_tree_node_t ** restrict res, mse_avl_tree_node_t * restrict __node)
 {
     mse_avl_tree_node_t *node = mse_shallow_copy_tree_node(__node);
     ASSERT(node != NULL);
@@ -240,7 +240,7 @@ static inline int __add_node_to_lookup(mse_avl_tree_node_t **res, mse_avl_tree_n
     return 1;
 }
 
-static inline int __tree_lookup(mse_avl_tree_node_t * restrict node, mse_avl_tree_node_t **res, int less_than, void *cmp_payload)
+static inline int __tree_lookup(mse_avl_tree_node_t * restrict node, mse_avl_tree_node_t ** restrict res, int less_than, void * restrict cmp_payload)
 {
     if (node == NULL) {
         return 1;
@@ -263,13 +263,13 @@ static inline int __tree_lookup(mse_avl_tree_node_t * restrict node, mse_avl_tre
     return 1;
 }
 
-int mse_tree_lookup(mse_avl_tree_node_t * restrict root, mse_avl_tree_node_t **res, int less_than, void *cmp_payload)
+int mse_tree_lookup(mse_avl_tree_node_t * restrict root, mse_avl_tree_node_t ** restrict res, int less_than, void * restrict cmp_payload)
 {
     *res = NULL;
     return __tree_lookup(root, res, less_than, cmp_payload);
 }
 
-static inline int __tree_lookup_2(mse_avl_tree_node_t * restrict node, mse_avl_tree_node_t **res, void *lower, void *upper)
+static inline int __tree_lookup_2(mse_avl_tree_node_t * restrict node, mse_avl_tree_node_t ** restrict res, void * restrict lower, void * restrict upper)
 {
     if (node == NULL) {
         return 1;
@@ -293,7 +293,7 @@ static inline int __tree_lookup_2(mse_avl_tree_node_t * restrict node, mse_avl_t
     return 1;
 }
 
-int mse_tree_lookup_2(mse_avl_tree_node_t * restrict root, mse_avl_tree_node_t **res, void * restrict lower, void * restrict upper)
+int mse_tree_lookup_2(mse_avl_tree_node_t * restrict root, mse_avl_tree_node_t ** restrict res, void * restrict lower, void * restrict upper)
 {
     *res = NULL;
     if (root != NULL) {
