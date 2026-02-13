@@ -1,6 +1,7 @@
 #include "./re2_wrapper.h"
 #include "../testing_h/testing.h"
 #include <string>
+#include <string.h>
 
 int mse_re_init(mse_re_t *re, char *str)
 {
