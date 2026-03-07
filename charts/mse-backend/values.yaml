@@ -61,9 +61,9 @@ ingress:
 
 resources:
   limits:
-    memory: 8Gi
+    memory: 2Gi
   requests:
-    memory: 3Gi
+    memory: 1Gi
 
 livenessProbe:
   httpGet:
