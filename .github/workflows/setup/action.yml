@@ -12,7 +12,7 @@ runs:
         sudo apt-get install -y --no-install-recommends build-essential cmake gcovr valgrind python3 bison libcurl4-openssl-dev libjansson-dev doxygen graphviz libmbedtls-dev npm
     - uses: actions/setup-python@v5
       with:
-        python-version: "3.9"
+        python-version: "3.10"
         cache: "pip" # caching pip dependencies
     - name: "Install Python deps"
       shell: bash
