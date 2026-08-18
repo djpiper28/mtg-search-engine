@@ -1,5 +1,5 @@
 FROM node:25-alpine AS base
-RUN npm i -g pnpm
+RUN npm i -g pnpm@10
 
 # Install dependencies only when needed
 FROM base AS deps
